@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectTeamsSettings render() renders 1`] = `
+<SideEffect(DocumentTitle)
+  title="Sentry"
+>
+  <div>
+    <SettingsPageHeading
+      title="Teams"
+    />
+    <div
+      className="panel panel-default horizontal-scroll"
+    >
+      <table
+        className="table"
+      >
+        <thead>
+          <tr>
+            <th>
+              Team
+            </th>
+            <th
+              style={
+                Object {
+                  "width": 120,
+                }
+              }
+            />
+          </tr>
+        </thead>
+        <tbody>
+          <TeamRow
+            access={
+              Set {
+                "org:read",
+                "org:write",
+                "org:admin",
+                "project:read",
+                "project:write",
+                "project:admin",
+                "team:read",
+                "team:write",
+                "team:admin",
+              }
+            }
+            key="1"
+            onRemove={[Function]}
+            orgId="org-slug"
+            projectId="project-slug"
+            team={
+              Object {
+                "id": "1",
+                "name": "Team Name",
+                "slug": "team-slug",
+              }
+            }
+          />
+        </tbody>
+      </table>
+    </div>
+  </div>
+</SideEffect(DocumentTitle)>
+`;
