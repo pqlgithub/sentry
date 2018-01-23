@@ -83,6 +83,7 @@ import ProjectReleaseTracking from './views/projectReleaseTracking';
 import ProjectReleases from './views/projectReleases';
 import ProjectSavedSearches from './views/projectSavedSearches';
 import ProjectSettings from './views/projectSettings';
+import ProjectTeams from './views/settings/project/projectTeams';
 import ProjectUserReportSettings from './views/projectUserReportSettings';
 import ProjectUserReports from './views/projectUserReports';
 import ProjectPlugins from './views/projectPlugins';
@@ -227,6 +228,12 @@ const projectSettingsRoutes = [
     path="settings/"
     name="General"
     component={errorHandler(ProjectGeneralSettings)}
+  />,
+  <Route
+    key="teams/"
+    path="teams/"
+    name="Teams"
+    component={errorHandler(ProjectTeams)}
   />,
   <Route
     key="alerts/"
