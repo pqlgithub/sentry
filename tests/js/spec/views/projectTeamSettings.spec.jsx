@@ -67,7 +67,7 @@ describe('ProjectTeamsSettings', function() {
       expect(mock).not.toHaveBeenCalled();
 
       // open modal
-      wrapper.find('a.btn.btn-default').simulate('click');
+      wrapper.find('Button').simulate('click');
 
       // click confrim
       wrapper.find('button.button-primary').simulate('click');

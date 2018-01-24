@@ -23,7 +23,10 @@ exports[`ProjectTeamsSettings render() renders 1`] = `
           </Box>
         </Flex>
       </PanelHeader>
-      <Styled(div)
+      <PanelBody
+        direction="column"
+        disablePadding={true}
+        flex={false}
         key="body"
       >
         <TeamRow
@@ -52,7 +55,7 @@ exports[`ProjectTeamsSettings render() renders 1`] = `
             }
           }
         />
-      </Styled(div)>
+      </PanelBody>
     </Styled(div)>
   </div>
 </SideEffect(DocumentTitle)>

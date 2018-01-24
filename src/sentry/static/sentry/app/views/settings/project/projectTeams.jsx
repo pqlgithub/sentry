@@ -6,6 +6,7 @@ import createReactClass from 'create-react-class';
 import {t} from '../../../locale';
 import ApiMixin from '../../../mixins/apiMixin';
 import AsyncView from '../../asyncView';
+import Button from '../../../components/buttons/button';
 import Confirm from '../../../components/confirm';
 import EmptyMessage from '../components/emptyMessage';
 import IndicatorStore from '../../../stores/indicatorStore';
@@ -59,7 +60,7 @@ const TeamRow = createReactClass({
   render() {
     let team = this.props.team;
     return (
-      <Row justify="space-between" px={2} py={2}>
+      <Row p={2}>
         <Box flex="1">
           <h5 style={{margin: '10px 0px'}}>{team.name}</h5>
         </Box>
@@ -70,9 +71,9 @@ const TeamRow = createReactClass({
               onConfirm={this.handleRemove}
               disabled={this.state.loading}
             >
-              <a className="btn btn-default">
+              <Button>
                 <span className="icon icon-trash" /> &nbsp;{t('Remove')}
-              </a>
+              </Button>
             </Confirm>
           </Box>
         )}
