@@ -8,56 +8,52 @@ exports[`ProjectTeamsSettings render() renders 1`] = `
     <SettingsPageHeading
       title="Teams"
     />
-    <div
-      className="panel panel-default horizontal-scroll"
-    >
-      <table
-        className="table"
+    <Styled(div)>
+      <PanelHeader
+        key="header"
       >
-        <thead>
-          <tr>
-            <th>
-              Team
-            </th>
-            <th
-              style={
-                Object {
-                  "width": 120,
-                }
-              }
-            />
-          </tr>
-        </thead>
-        <tbody>
-          <TeamRow
-            access={
-              Set {
-                "org:read",
-                "org:write",
-                "org:admin",
-                "project:read",
-                "project:write",
-                "project:admin",
-                "team:read",
-                "team:write",
-                "team:admin",
-              }
+        <Flex
+          align="center"
+        >
+          <Box
+            flex="1"
+            px={2}
+          >
+            Team
+          </Box>
+        </Flex>
+      </PanelHeader>
+      <Styled(div)
+        key="body"
+      >
+        <TeamRow
+          access={
+            Set {
+              "org:read",
+              "org:write",
+              "org:admin",
+              "project:read",
+              "project:write",
+              "project:admin",
+              "team:read",
+              "team:write",
+              "team:admin",
             }
-            key="1"
-            onRemove={[Function]}
-            orgId="org-slug"
-            projectId="project-slug"
-            team={
-              Object {
-                "id": "1",
-                "name": "Team Name",
-                "slug": "team-slug",
-              }
+          }
+          key="1"
+          onRemove={[Function]}
+          orgId="org-slug"
+          projectId="project-slug"
+          team={
+            Object {
+              "id": "1",
+              "name": "Team Name",
+              "slug": "team-slug",
             }
-          />
-        </tbody>
-      </table>
-    </div>
+          }
+        />
+      </Styled(div)>
+    </Styled(div)>
   </div>
 </SideEffect(DocumentTitle)>
 `;

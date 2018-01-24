@@ -83,7 +83,6 @@ import ProjectReleaseTracking from './views/projectReleaseTracking';
 import ProjectReleases from './views/projectReleases';
 import ProjectSavedSearches from './views/projectSavedSearches';
 import ProjectSettings from './views/projectSettings';
-import ProjectTeams from './views/settings/project/projectTeams';
 import ProjectUserReportSettings from './views/projectUserReportSettings';
 import ProjectUserReports from './views/projectUserReports';
 import ProjectPlugins from './views/projectPlugins';
@@ -233,7 +232,9 @@ const projectSettingsRoutes = [
     key="teams/"
     path="teams/"
     name="Teams"
-    component={errorHandler(ProjectTeams)}
+    componentPromise={() =>
+      import(/*webpackChunkName: "ProjectTeams"*/ './views/settings/project/projectTeams')}
+    component={errorHandler(LazyLoad)}
   />,
   <Route
     key="alerts/"

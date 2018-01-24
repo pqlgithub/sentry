@@ -1,3 +1,4 @@
+import {Box, Flex} from 'grid-emotion';
 import PropTypes from 'prop-types';
 import React from 'react';
 import createReactClass from 'create-react-class';
@@ -6,7 +7,12 @@ import {t} from '../../../locale';
 import ApiMixin from '../../../mixins/apiMixin';
 import AsyncView from '../../asyncView';
 import Confirm from '../../../components/confirm';
+import EmptyMessage from '../components/emptyMessage';
 import IndicatorStore from '../../../stores/indicatorStore';
+import Panel from '../components/panel';
+import PanelBody from '../components/panelBody';
+import PanelHeader from '../components/panelHeader';
+import Row from '../components/row';
 import SettingsPageHeader from '../components/settingsPageHeader';
 
 const TeamRow = createReactClass({
@@ -53,24 +59,24 @@ const TeamRow = createReactClass({
   render() {
     let team = this.props.team;
     return (
-      <tr>
-        <td>
-          <h5 style={{marginBottom: 5}}>{team.name}</h5>
-        </td>
+      <Row justify="space-between" px={2} py={2}>
+        <Box flex="1">
+          <h5 style={{margin: '10px 0px'}}>{team.name}</h5>
+        </Box>
         {this.props.access.has('project:write') && (
-          <td style={{textAlign: 'right'}}>
+          <Box pl={2}>
             <Confirm
               message={t('Are you sure you want to remove this team?')}
               onConfirm={this.handleRemove}
               disabled={this.state.loading}
             >
-              <a className="btn btn-sm btn-default">
+              <a className="btn btn-default">
                 <span className="icon icon-trash" /> &nbsp;{t('Remove')}
               </a>
             </Confirm>
-          </td>
+          </Box>
         )}
-      </tr>
+      </Row>
     );
   },
 });
@@ -91,42 +97,37 @@ class ProjectTeams extends AsyncView {
 
   renderEmpty() {
     return (
-      <div className="box empty-stream">
-        <span className="icon icon-exclamation" />
-        <p>{t('There are no teams with access to this project.')}</p>
-      </div>
+      <EmptyMessage>{t('There are no teams with access to this project.')}</EmptyMessage>
     );
   }
 
   renderResults() {
     let {orgId, projectId} = this.props.params;
     let access = new Set(this.props.organization.access);
-    return (
-      <div className="panel panel-default horizontal-scroll">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>{t('Team')}</th>
-              {access.has('project:write') && <th style={{width: 120}} />}
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.teams.map(team => {
-              return (
-                <TeamRow
-                  access={access}
-                  key={team.id}
-                  orgId={orgId}
-                  projectId={projectId}
-                  team={team}
-                  onRemove={this.handleRemovedTeam.bind(this, team)}
-                />
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    );
+
+    return [
+      <PanelHeader key={'header'}>
+        <Flex align="center">
+          <Box px={2} flex="1">
+            {t('Team')}
+          </Box>
+        </Flex>
+      </PanelHeader>,
+      <PanelBody key={'body'}>
+        {this.state.teams.map(team => {
+          return (
+            <TeamRow
+              access={access}
+              key={team.id}
+              orgId={orgId}
+              projectId={projectId}
+              team={team}
+              onRemove={this.handleRemovedTeam.bind(this, team)}
+            />
+          );
+        })}
+      </PanelBody>,
+    ];
   }
 
   renderBody() {
@@ -138,7 +139,7 @@ class ProjectTeams extends AsyncView {
     return (
       <div>
         <SettingsPageHeader title={t('Teams')} />
-        {body}
+        <Panel>{body}</Panel>
       </div>
     );
   }
