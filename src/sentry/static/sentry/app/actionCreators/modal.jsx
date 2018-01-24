@@ -26,4 +26,10 @@ export function openDiffModal(options) {
     );
 }
 
-window.openDiffModal = openDiffModal;
+export function openSudo({retryRequest, onClose} = {}) {
+  import('../components/modals/sudoModal')
+    .then(mod => mod.default)
+    .then(SudoModal =>
+      openModal(deps => <SudoModal {...deps} retryRequest={retryRequest} />, {onClose})
+    );
+}
